@@ -6,7 +6,7 @@ def Kpoints(kpoints):
     kpoints_re = r'\d+  \d+  \d+'
     if isinstance(kpoints, tuple):
         sub = f'{kpoints[0]} {kpoints[1]} {kpoints[2]}'
-    ref_file = file_open(path='./ref_files/KPOINTS')
+    ref_file = file_open(path= '../ref_files/KPOINTS')
     for idx, line in enumerate(ref_file):
         if 'Monkhorst' in line:
             val = idx + 1

@@ -13,6 +13,6 @@ def POSCAR(path , cif_file, sel_dyn):
                 continue
     
             poscar_file[idx] = line + ' ' + sel_dyn
-        file_write(path = path ,filename = 'POSCAR', file_list = poscar_file)
+        file_write(path = path , filename = 'POSCAR' , file_list = poscar_file)
     
     return 0
