@@ -1,0 +1,5 @@
+Comment: this KPOINTS file works e.g. for primitive cubic bulk cell, gives 60kpts
+0           Automatic generation of k-points
+Monkhorst   If start with G Gamma is included (Use Gonkhorst for hex cell)
+ 4  4  4      grid (use multiples of 2; for hex cell use multiples of 3)
+ .0 .0 .0   shift of origin

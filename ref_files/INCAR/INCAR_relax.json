@@ -1,0 +1,22 @@
+{
+    "ISTART":1,
+    "LWAVE":".TRUE.",
+    "LCHARG":".TRUE.",
+    "ENCUT":600,
+    "PREC":"Accurate",
+    "NELM":600,
+    "EDIFF":"1E-5",
+    "EDIFFG":"-1e-3",
+    "ISPIN":2,
+    "LORBIT":11,
+    "NSW":99,
+    "IBRION":2,
+    "ISIF":3,
+    "ISYM":0,
+    "ISMEAR":-5,
+    "SIGMA":0.01,
+    "ALGO":"Normal",
+    "MAGMOM":"12*0.6",
+    "LPLANE":".TRUE.",
+    "LREAL":".FALSE."
+}
