@@ -1,10 +1,10 @@
 import shutil
 from file_utils import file_write
-from incar import INCAR
-from kpoints import Kpoints
-from poscar import POSCAR
-from potcar import POTCAR
-from runjob import runjob
+from Common_runs.run_files.incar import INCAR
+from Common_runs.run_files.kpoints import Kpoints
+from Common_runs.run_files.poscar import POSCAR
+from Common_runs.run_files.potcar import POTCAR
+from Common_runs.run_files.runjob import runjob
 
 
 def normal_run(path, func, compound, incar_settings, kp, cif_file, sel_dyn, runjob_dict):

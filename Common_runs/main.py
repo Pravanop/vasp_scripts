@@ -1,20 +1,26 @@
 from mainRun import run
+import numpy as np
 
+path = "/Users/pravanomprakash/Downloads/zro_domain_2_0"
 runjob_dict = {
     "name": "structure_relax",
-    "comp_name": "skx-normal",
+    "comp_name": "compute",
     "nodes":2,
-    "cores":96,
-    "hours":2,
+    "cores":128,
+    "hours":4,
     "loop": False,
     "static": " "
 }
-run(cif_folder = "/Users/pravanomprakash/Downloads/pbcm_nodope_strained",
-    run_folder = "/Users/pravanomprakash/Downloads/pbcm_nodope_strained_run/",
+# holes = np.linspace(0, 0.2, num = 21)
+nelect = []
+
+
+run(cif_folder = f"{path}/",
+    run_folder = f"{path}_run/",
     func = "LDA",
-    compound = "hfo2",
+    compound = "zro2",
     sel_dyn = "",
     runjob_dict = runjob_dict,
-    incar_ref = "/Users/pravanomprakash/Documents/vasp_scripts/ref_files/INCAR/",
+    incar_ref = "../ref_files/INCAR/",
     incar_set = "",
-    type="")
+    type="relax")
