@@ -1,5 +1,5 @@
 from pymatgen.core import Structure
-from file_utils import file_open, file_write
+from Common_runs.vasprun_old.file_utils import file_open, file_write
 
 def POSCAR(path , cif_file, sel_dyn):
 

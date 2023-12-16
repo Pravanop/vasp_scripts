@@ -18,10 +18,10 @@ def galerkin(ode, x, x0, x1, u0, q):
 x = Symbol('x')
 ode = lambda u: -u.diff(x,2) + u + 8 - 16*x**2 + x**4
 
-galerkin_solution = galerkin(ode, x, 0, 2, 0, 4)
+galerkin_solution = galerkin(ode, x, 0, 2, 0, 3)
 pprint(galerkin_solution)
 x = np.linspace(0,2,100)
-galerkin_solution3 = 15/34*x**4 + 704/119*x**2 + 265/17*x
+galerkin_solution3 = -4*x**3 + 7.5*x**2 + (2-16*49/480)*x
 galerkin_solution4 = -x**4 + 4*x**2
 exact_solution = -(x**2) *(x**2 - 4)
 

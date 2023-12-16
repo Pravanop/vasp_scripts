@@ -1,7 +1,7 @@
 import os
 import shutil
 import subprocess
-from mainRun import run
+from Common_runs.vasprun_old.mainRun import run
 
 path = "/Users/pravanomprakash/Downloads/phonopy"
 
@@ -27,8 +27,6 @@ for i in lfolder:
 	for j in lfolder1:
 		path1 = f"{path}/inp/{i[:-5]}/"
 		
-		
-		
 		if j == "phonopy_disp.yaml":
 			continue
 		if j == "SPOSCAR":
@@ -46,7 +44,7 @@ for i in lfolder:
 				"comp_name" : "shared" ,
 				"nodes"     : 1 ,
 				"cores"     : 96 ,
-				"hours"     : 3 ,
+				"hours"     : 2 ,
 				"loop"      : False ,
 				"static"    : " "
 				}

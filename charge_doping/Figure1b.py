@@ -88,7 +88,7 @@ p42nmc_020 = np.array(
 		)
 p42nmc_020 = flipper(p42nmc_020)
 x = np.linspace(-1.5 , 1.5 , 39)
-fontsize = 26
+fontsize = 32
 colors = ['#332288' , "#0077BB" , "#009988" , "#CC3311" , "#EE7733" , "#BBBBBB"]
 colors.reverse()
 linewidth = 4.5
@@ -169,8 +169,8 @@ for ax in axs :
 		count += 1
 # axes labels
 legend = plt.legend(
-		['0' , '0.04' , '0.07' , '0.12' , '0.16' , '0.2'] , bbox_to_anchor = (1.05 , 2.25) , ncols = 6 ,
-		title = 'Holes/f.u.' , labelspacing = 0.0, borderpad = 0.8,
+		['0' , '0.04' , '0.07' , '0.12' , '0.16' , '0.2'] , bbox_to_anchor = (0.85 , 2.30) , ncols = 3 ,
+		title = 'Holes/f.u.' , labelspacing = 0.0, borderpad = 0.2,
 		fontsize = fontsize
 		)
 plt.setp(legend.get_title() , fontsize = fontsize)

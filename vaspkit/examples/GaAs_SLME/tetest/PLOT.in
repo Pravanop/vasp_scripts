@@ -1,0 +1,50 @@
+#BEGIN_CUSTOMIZE_PLOT
+# Global settings
+figure_format                 'pdf'                          # character type: 'png', 'pdf', 'eps', 'jpg'
+#figure_style                  'seaborn'                     # character type: 'default', 'classic', 'grayscale', 'seaborn', 'bmh', 'seaborn-notebook'
+font_family                   'arial'                        # character type: 'fantasy','arial','sans-serif', 'monospace', 'cursive', 'serif'
+figure_height                  4.0                           # floating-point type:
+figure_width                   5.0                           # floating-point type:
+global_fontsize                15.0                          # floating-point type:
+label_fontsize                 15.0                          # floating-point type:
+dpi                            300                           # integer type:
+
+# Legend-related settings
+show_legend                   .TRUE.                         # logical type: .TRUE. or .FALSE.
+legend_location               'upper left'                   # character type: 'best', 'upper right', 'upper left', 'lower left', 'lower right', 'right', 'center left', 'center right', 'lower center', 'upper center', 'center'
+legend_fontsize                14.0                          # floating-point type:
+
+# Line-related settings
+line_colors                   ['blue', 'green', 'red']       # character type type:
+line_styles                   ['solid','-','-']              # floating-point type: '-' or solid, '--' or 'dashed', '-.' or 'dashdot'
+line_widths                   [1.5, 1.5, 1.5]                # floating-point type:
+fill_areas                    .TRUE.                         # logical type: .TRUE. or .FALSE., fill area between two horizontal curves.
+
+# Marker-related settings
+marker_colors                 ['blue', 'cyan', 'red', 'magenta', 'orange', 'lawngreen', 'deeppink', 'brown', 'dodgerblue']
+marker_symbols                ['o','o','o']          # 'o': Circle, 'x': Cross, '+': Plus sign, 'D': Filled diamond, 's': Square, '^': Triangle
+marker_scale                  100.0
+marker_alpha            =      [0.7, 0.6, 0.5, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8]
+marker_sizes                  [10, 11.0, 12.0]       # floating-point type:
+marker_scale                  20.0                   # floating-point type:
+
+# contour-related settings
+colormap               =       'RdBu'
+colormap               =       'jet'
+#colormap               = 'Orange'
+levels                        5
+#contour_limits               [-10, 2]
+display_colorbar              T
+
+# 3D-plot related settings
+elevation                       12.0
+azimuth                         24.0
+
+# Tick-related settings
+x_limits               =       [-8, 8]
+y_limits                      [-8, 8]
+z_limits                      [-8, 8]
+x_major_locator       =        2.0                    # floating-point type:
+y_major_locator               3.0                    # floating-point type:
+z_major_locator               3.0                    # floating-point type:
+#END_CUSTOMIZE_PLOT

@@ -12,11 +12,12 @@ from pymatgen.io.cif import CifWriter
 
 warnings.filterwarnings("ignore")
 
-path = f"/Users/pravanomprakash/Downloads/zro_domain_2_0/vasprun.xml"
+path = f"/Users/pravanomprakash/Library/CloudStorage/Box-Box/ZrO_domain/zro_domain_2_0/vasprun.xml"
 
 def analyse(file_path) :
 	dosrun = Vasprun(filename = file_path , parse_dos = True)
 	Cdos = dosrun.complete_dos
+	print(Cdos.efermi, Cdos.get_cbm_vbm())
 	dos_by_site = []
 	for site in Cdos.structure.sites :
 		dos_by_site.append(Cdos.get_site_dos(site , ))
@@ -141,7 +142,7 @@ for key, value in o_polar.items():
 	if type(value) is not int :
 		densities = by_site[value[0]-1].get_densities()
 		densities += by_site[value[1]-1].get_densities()
-		densities /= 2
+		# densities /= 2
 		
 		if key == 2:
 			densities = np.zeros_like(densities)
@@ -157,7 +158,7 @@ for key , value in o_non_polar.items() :
 	if type(value) is not int:
 		densities = by_site[value[0]-1].get_densities()
 		densities += by_site[value[1]-1].get_densities()
-		densities /= 2
+		# densities /= 2
 		if key == 9:
 			densities = np.zeros_like(densities)
 			
@@ -173,7 +174,7 @@ for key , value in zr.items() :
 	if type(value) is not int :
 		densities = by_site[value[0]-1].get_densities()
 		densities += by_site[value[1]-1].get_densities()
-		densities /= 2
+		# densities /= 2
 		zr_dos.update({key : densities})
 	
 	else :
@@ -182,47 +183,49 @@ for key , value in zr.items() :
 
 energies = by_site[42].energies - Cdos.efermi
 layers = 14
-fig, ax = plt.subplots(layers , sharex='col', sharey='row', figsize=(6,4))
+fig, ax = plt.subplots(layers , sharex='col', sharey='row', figsize=(5,8))
 
 # df = pd.DataFrame(np.array([zr_dos[i] for i in range(1, 16)]))
 # df.to_csv("temp0.csv")
-
+fontsize = 12
 for i in range(layers + 1):
 	if i == layers:
 		break
 		
-	start = find_nearest(energies , value = -1)
-	end = find_nearest(energies , value = 0)
+	start = find_nearest(energies , value = 0)
+	end = find_nearest(energies , value = 0.5)
 	
 	O1_area = trapezoid(polar_dos[i + 1][start :end] , energies[start :end])
 	O2_area = trapezoid(non_polar_dos[i + 1][start :end] , energies[start :end])
 	Zr_area = trapezoid(zr_dos[i + 1][start :end] , energies[start :end])
 	
-	print(f"{i} layer, polar: {O1_area}, non_polar: {O2_area}, metal: {Zr_area}")
+	print(f"{i} layer, polar: {round(O1_area,3)+round(O2_area,3)+round(Zr_area,3)}, non_polar: {round(O2_area,3)}, metal:"
+	      f" {round(Zr_area,3)}")
 	
-	ax[i].tick_params(axis = 'both' , which = 'major' , labelsize = 8)
-	ax[i].plot(energies, polar_dos[i + 1], c = '#009988', alpha = 1, linewidth = 0.9)
-	ax[i].plot(energies , non_polar_dos[i + 1] , c = '#EE7733' , alpha = 1 , linewidth = 0.9)
-	ax[i].plot(energies , zr_dos[i + 1] , c = '#555555' , alpha = 1 , linewidth = 0.9)
-	ax[i].fill_between(energies , polar_dos[i + 1] , where = energies != 0.0 , color = '#009988' , alpha = 0.7)
-	ax[i].fill_between(energies , non_polar_dos[i + 1] , where = energies != 0.0 , color = '#EE7733' , alpha = 0.7)
+	ax[i].tick_params(axis = 'both' , which = 'major' , labelsize = fontsize)
+	ax[i].plot(energies, polar_dos[i + 1], c = '#0077BB', alpha = 1, linewidth = 2)
+	ax[i].plot(energies , non_polar_dos[i + 1] , c = '#CC6677' , alpha = 1 , linewidth = 2)
+	ax[i].plot(energies , zr_dos[i + 1] , c = '#555555' , alpha = 1 , linewidth = 2)
+	ax[i].fill_between(energies , polar_dos[i + 1] , where = energies != 0.0 , color = '#0077BB' , alpha = 0.7)
+	ax[i].fill_between(energies , non_polar_dos[i + 1] , where = energies != 0.0 , color = '#CC6677' , alpha = 0.7)
 	ax[i].fill_between(energies , zr_dos[i + 1] , where = energies != 0.0 , color = '#555555' , alpha = 0.7)
 	# ax[i].plot(energies , non_polar_dos[i + 1] + polar_dos[i + 1] +  zr_dos[i + 1], c = '#009988' , alpha = 1 , linewidth = 0.9)
 	# ax[i].fill_between(energies ,non_polar_dos[i + 1] + polar_dos[i + 1] +  zr_dos[i + 1] , where = energies != 0.0 , color = '#009988' , alpha = 0.7)
 	ax[i].axvline(x = 0, color = 'black', linestyle = '-.', alpha = 0.8, linewidth = 0.8)
-	ax[i].set_xlim(-4, 5)
-	ax[i].set_ylim(0, 2)
-	ax[i].set_yticks(np.arange(0, 2, 1))
+	ax[i].set_xlim(-0.5, 0.8)
+	ax[i].set_ylim(0, 5)
+	ax[i].set_yticks([])
 	ax[i].label_outer()
-	ax[i].set_title(f'Layer {i+1}', x = 0.4, y = 0, fontsize = 8)
-	ax[i].grid( alpha = 0.4)
+	ax[i].set_title(f'Layer {i+1}', x = 0.9, y = 0, fontsize = fontsize)
+	ax[i].grid( alpha = 0.2)
 	ax[i].spines['top'].set_visible(False)
 	ax[i].spines['right'].set_visible(False)
 
-fig.supxlabel("Energy - $E_f$ (eV)", fontsize = 8)
-fig.supylabel("DOS", fontsize = 8)
-fig.legend(["$O_p$", "$O_{np}$", "Zr"], loc = "upper center", ncols = 3, fontsize = 8)
+fig.supxlabel("Energy - $E_f$ (eV)", fontsize = fontsize)
+fig.supylabel("DOS", fontsize = fontsize)
+fig.legend(["$O_1$", "$O_{2}$", "Zr"], loc = "upper center", ncols = 3, fontsize = fontsize)
 
-plt.subplots_adjust(wspace=0, hspace=0)
-
+plt.subplots_adjust(wspace=0, hspace=0, left=0.1, bottom = 0.08)
+plt.savefig('/Users/pravanomprakash/Library/CloudStorage/Box-Box/ZrO_domain/DOS.png', dpi=100,
+            bbox_inches='tight')
 plt.show()

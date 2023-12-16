@@ -1,5 +1,6 @@
 {
-    "ISTART":0,
+    "ISTART":1,
+    "LWAVE": ".TRUE.",
     "ENCUT":600,
     "PREC":"Accurate",
     "NELM":"600",
@@ -14,7 +15,7 @@
     "SIGMA":0.01,
     "ALGO":"Normal",
     "MAGMOM":"86*0.6",
-    "LPLANE":".TRUE.",
-    "LREAL":".FALSE.",
-    "NCORE": "16"
+    "LREAL":"auto",
+    "NCORE": "16",
+    "KPAR": "2"
 }

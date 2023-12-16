@@ -13,19 +13,20 @@ def flipper(arr) :
 	temp = np.flip(arr[1 :])
 	return np.concatenate((temp , arr))
 
-def energy_func(x , a , b , c , d) :
-	return (a / 2) * (x ** 2) + (b / 4) * (x ** 4) + (c / 6) * (x ** 6) + (d / 8) * (x ** 8)
+def energy_func(x , a , b , c ) :
+	return (a) * (x ** 2) + (b) * (x ** 4) + (c) * (x ** 6)
 
-def electric_func(x , a , b , c , d) :
+def electric_func(x , a , b , c, d) :
 	return a * x + b * x ** 3 + c * x ** 5 + d * x ** 7
 
 def capacitance_func(x , a , b , c , d) :
 	return a + 3 * b * x ** 2 + 5 * c * x ** 4
 
-x = np.linspace(-1.5 , 1.5 , 39)
+x = np.linspace(-1.335 , 1.335 , 39)
 c = []
 p42nmc_000 = np.array(
-		[0 , 4 , 14 , 25 , 34 , 39 , 39 , 35 , 28 , 18 , 7 , -3 , -9 , -10 , -4 , 10 , 33 , 68 , 115 , 174]
+		[0 , -1 , -5 , -12 , -22 , -35 , -50 , -66 , -83 , -99 , -113 , -124 , -131 , -132 , -126 , -113 ,
+		 -90 , -57 , -13 , 44]
 		)
 p42nmc_000 = flipper(p42nmc_000)
 popt , _ = curve_fit(energy_func , x , p42nmc_000)

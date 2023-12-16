@@ -1,22 +1,22 @@
 {
     "ISTART":0,
     "LWAVE":".FALSE.",
-    "LCHARG":".TRUE.",
+    "LCHARG":".FALSE.",
     "ENCUT":600,
     "PREC":"Accurate",
     "NELM":600,
-    "EDIFF":"1E-7",
+    "EDIFF":"1E-6",
     "EDIFFG":"-1e-3",
     "ISPIN":2,
     "NSW":0,
     "IBRION":-1,
     "ISIF":2,
     "ISYM":0,
-    "ISMEAR":0,
+    "ISMEAR":-5,
     "SIGMA":0.03,
+    "MAGMOM": "96*0.6",
     "ALGO":"Normal",
     "NCORE": 16,
-    "MAGMOM":"12*0.6",
-    "LPLANE":".TRUE.",
-    "LREAL":".FALSE."
+    "KPAR": 2,
+    "LREAL":"auto"
 }
