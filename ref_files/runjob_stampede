@@ -1,0 +1,17 @@
+#!/bin/bash
+#SBATCH -J relax_PBE_run          # Job name
+#SBATCH -o status.o%j        # Name of stdout output file(%j expands to jobId)
+#SBATCH -e status.e%j        # Name of stderr output file(%j expands to jobId)
+#SBATCH -p skx-dev        # Submit to the 'normal' or 'development' queue
+#SBATCH -N 2                  # Total number of nodes requested (16 cores/node)
+#SBATCH -n 96                 # Total number of mpi tasks requested
+#SBATCH -t 02:00:00           # Run time (hh:mm:ss) - 24 hours
+#SBATCH -A TG-DMR160007
+#export OMP_NUM_THREADS=1
+export FORT_BUFFERED=TRUE
+module load intel/18.0.2
+# module load vasp/5.4.4
+# module load remora
+# remora ibrun $VASP2D >> stdout
+# remora ibrun $VASPZ >> stdout
+ibrun $VASP >> stdout
